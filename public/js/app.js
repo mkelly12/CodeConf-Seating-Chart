@@ -1,7 +1,7 @@
 $(function () {
 
 	var closeForm = function () {
-		$('#mark-seat-form').fadeOut('slow');
+		$('#mark-seat-form, .nub').fadeOut('slow');
 		$('td').removeClass('selected');
 			
 	};
@@ -29,9 +29,9 @@ $(function () {
 		return false;
 	});
 
-    $('#cancel').bind('click', function () {
+    $('#cancel').bind('click', function (event) {
+      event.preventDefault();
 		closeForm();
-		return false;
 	});
 	
 	$('#twitter-username').bind('focus', function () {
@@ -60,7 +60,13 @@ $(function () {
 			$('#mark-seat-form input[name=status][value=open]').attr('checked', 'checked');
 		}
 		
-		
+		$('.nub').show();
+		$('.nub').position({
+		  my: 'center top',
+		  at: 'center bottom',
+		  of: '.selected',
+		  offset: '117 6'
+		});
 		$form.css({top: position.top + 55, left: leftPosition(position.left, $form.width()) }).fadeIn();
 	};
 	
